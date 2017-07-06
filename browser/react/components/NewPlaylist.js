@@ -4,7 +4,9 @@ export default class NewPlaylist extends Component {
 
     constructor () {
     super();
-    this.state = {};
+    this.state = {
+      inputValue: ""
+    };
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
     }
@@ -18,6 +20,9 @@ export default class NewPlaylist extends Component {
     handleSubmit (event){
         console.log(this.state.inputValue)
         event.preventDefault();
+        this.setState({
+          inputValue: ""
+        });
     }
 
 
@@ -33,7 +38,7 @@ export default class NewPlaylist extends Component {
                 <div className="form-group">
                     <label className="col-xs-2 control-label">Name</label>
                     <div className="col-xs-10">
-                    <input className="form-control" type="text" onChange={this.handleChange} />
+                    <input className="form-control" type="text" onChange={this.handleChange} value={this.state.inputValue} />
                     </div>
                 </div>
                 <div className="form-group">
