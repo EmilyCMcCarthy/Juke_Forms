@@ -5,7 +5,8 @@ export default class NewPlaylist extends Component {
     constructor () {
     super();
     this.state = {
-      inputValue: ""
+      inputValue: "",
+      edited : false
     };
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
@@ -13,7 +14,8 @@ export default class NewPlaylist extends Component {
 
   handleChange (event) {
          this.setState({
-          inputValue: event.target.value
+          inputValue: event.target.value,
+          edited : true
         });
     }
 
@@ -43,7 +45,15 @@ export default class NewPlaylist extends Component {
                 </div>
                 <div className="form-group">
                     <div className="col-xs-10 col-xs-offset-2">
-                    <button type="submit" className="btn btn-success">Create Playlist</button>
+                    <button type="submit" className="btn btn-success" disabled={this.state.inputValue.length > 16 || this.state.inputValue.length === 0}>Create Playlist</button>
+                    <div>
+                    {
+                     (this.state.inputValue.length === 0 && this.state.edited === true ) ? <div className="alert alert-warning">Please enter a name</div> : <div></div>
+                    }
+                    {
+                     (this.state.inputValue.length > 16) ? <div className="alert alert-warning">Please enter short name</div> : <div></div>
+                    }
+                    </div>
                     </div>
                 </div>
                 </fieldset>

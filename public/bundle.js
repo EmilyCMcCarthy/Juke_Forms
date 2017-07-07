@@ -13249,7 +13249,8 @@ var NewPlaylist = function (_Component) {
         var _this = _possibleConstructorReturn(this, (NewPlaylist.__proto__ || Object.getPrototypeOf(NewPlaylist)).call(this));
 
         _this.state = {
-            inputValue: ""
+            inputValue: "",
+            edited: false
         };
         _this.handleChange = _this.handleChange.bind(_this);
         _this.handleSubmit = _this.handleSubmit.bind(_this);
@@ -13260,7 +13261,8 @@ var NewPlaylist = function (_Component) {
         key: "handleChange",
         value: function handleChange(event) {
             this.setState({
-                inputValue: event.target.value
+                inputValue: event.target.value,
+                edited: true
             });
         }
     }, {
@@ -13314,8 +13316,22 @@ var NewPlaylist = function (_Component) {
                                 { className: "col-xs-10 col-xs-offset-2" },
                                 _react2.default.createElement(
                                     "button",
-                                    { type: "submit", className: "btn btn-success" },
+                                    { type: "submit", className: "btn btn-success", disabled: this.state.inputValue.length > 16 || this.state.inputValue.length === 0 },
                                     "Create Playlist"
+                                ),
+                                _react2.default.createElement(
+                                    "div",
+                                    null,
+                                    this.state.inputValue.length === 0 && this.state.edited === true ? _react2.default.createElement(
+                                        "div",
+                                        { className: "alert alert-warning" },
+                                        "Please enter a name"
+                                    ) : _react2.default.createElement("div", null),
+                                    this.state.inputValue.length > 16 ? _react2.default.createElement(
+                                        "div",
+                                        { className: "alert alert-warning" },
+                                        "Please enter short name"
+                                    ) : _react2.default.createElement("div", null)
                                 )
                             )
                         )
