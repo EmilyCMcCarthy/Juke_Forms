@@ -25,6 +25,17 @@ const Sidebar = (props) => {
           </Link>
         </h4>
       </section>
+      <section>
+      <hr />
+      <ul className="list-unstyled">
+        <li className="playlist-item menu-item">
+          {/*<Link to={`/playlists/${playlists.id}`}>some playlist</Link>*/}
+        </li>
+        <li className="playlist-item menu-item">
+          <Link to="WHERE_TO_GO">another playlist</Link>
+        </li>
+      </ul>
+      </section>
     </sidebar>
   );
 }

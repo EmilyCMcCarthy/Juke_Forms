@@ -12199,6 +12199,10 @@ var _NewPlaylist = __webpack_require__(127);
 
 var _NewPlaylist2 = _interopRequireDefault(_NewPlaylist);
 
+var _axios = __webpack_require__(25);
+
+var _axios2 = _interopRequireDefault(_axios);
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -12213,10 +12217,26 @@ var Main = function (_Component) {
   function Main() {
     _classCallCheck(this, Main);
 
-    return _possibleConstructorReturn(this, (Main.__proto__ || Object.getPrototypeOf(Main)).apply(this, arguments));
+    var _this = _possibleConstructorReturn(this, (Main.__proto__ || Object.getPrototypeOf(Main)).call(this));
+
+    _this.state = {
+      playlists: []
+    };
+    return _this;
   }
 
   _createClass(Main, [{
+    key: 'componentDidMount',
+    value: function componentDidMount() {
+      var _this2 = this;
+
+      _axios2.default.get('/api/playlists').then(function (res) {
+        return res.data;
+      }).then(function (playlists) {
+        _this2.setState({ playlists: playlists });
+      });
+    }
+  }, {
     key: 'render',
     value: function render() {
       return _react2.default.createElement(
@@ -12240,7 +12260,7 @@ var Main = function (_Component) {
               _react2.default.createElement(_reactRouterDom.Route, { path: '/albums/:albumId', component: _SingleAlbum2.default }),
               _react2.default.createElement(_reactRouterDom.Route, { exact: true, path: '/artists', component: _AllArtists2.default }),
               _react2.default.createElement(_reactRouterDom.Route, { path: '/artists/:artistId', component: _SingleArtist2.default }),
-              _react2.default.createElement(_reactRouterDom.Route, { path: '/new-playlist', component: _NewPlaylist2.default }),
+              _react2.default.createElement(_reactRouterDom.Route, { path: '/playlists', component: _NewPlaylist2.default }),
               _react2.default.createElement(_reactRouterDom.Route, { component: _StatefulAlbums2.default })
             )
           ),
@@ -13485,6 +13505,25 @@ var Sidebar = function Sidebar(props) {
           { className: 'btn btn-primary btn-block', to: '/new-playlist' },
           _react2.default.createElement('span', { className: 'glyphicon glyphicon-plus' }),
           ' PLAYLIST'
+        )
+      )
+    ),
+    _react2.default.createElement(
+      'section',
+      null,
+      _react2.default.createElement('hr', null),
+      _react2.default.createElement(
+        'ul',
+        { className: 'list-unstyled' },
+        _react2.default.createElement('li', { className: 'playlist-item menu-item' }),
+        _react2.default.createElement(
+          'li',
+          { className: 'playlist-item menu-item' },
+          _react2.default.createElement(
+            _reactRouterDom.Link,
+            { to: 'WHERE_TO_GO' },
+            'another playlist'
+          )
         )
       )
     )
