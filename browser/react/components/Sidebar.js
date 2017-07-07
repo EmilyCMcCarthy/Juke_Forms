@@ -1,8 +1,11 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 
+
 const Sidebar = (props) => {
 
+var playlists = props.playlists;
+console.log(playlists, "playlist in sidebar");
   return (
     <sidebar>
       <img src="juke.svg" className="logo" />
@@ -28,12 +31,17 @@ const Sidebar = (props) => {
       <section>
       <hr />
       <ul className="list-unstyled">
-        <li className="playlist-item menu-item">
-          {/*<Link to={`/playlists/${playlists.id}`}>some playlist</Link>*/}
-        </li>
-        <li className="playlist-item menu-item">
-          <Link to="WHERE_TO_GO">another playlist</Link>
-        </li>
+      
+          {
+            playlists.map(playlist => {
+              return (
+                <li className="playlist-item menu-item" key={playlist.id}>
+                  <Link to={`/playlists/${playlist.id}`}>{ playlist.name }</Link>
+                </li>
+              );
+            })
+          }
+      
       </ul>
       </section>
     </sidebar>

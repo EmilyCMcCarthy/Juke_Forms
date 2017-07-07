@@ -25,11 +25,14 @@ export default class Main extends Component {
     });
   }
   render () {
+
+    const playlists = this.state.playlists;
+
     return (
       <Router>
         <div id="main" className="container-fluid">
           <div className="col-xs-2">
-            <Sidebar />
+            <Sidebar playlists={playlists} />
           </div>
           <div className="col-xs-10">
             <Switch>
@@ -37,7 +40,7 @@ export default class Main extends Component {
               <Route path="/albums/:albumId" component={SingleAlbum} />
               <Route exact path="/artists" component={AllArtists} />
               <Route path="/artists/:artistId" component={SingleArtist} />
-              <Route path="/playlists" component={NewPlaylist} />
+              <Route path="/new-playlist" component={NewPlaylist} />
               <Route component={StatefulAlbums} />
 
             </Switch>
