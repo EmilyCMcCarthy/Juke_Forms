@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import axios from 'axios';
 
 export default class NewPlaylist extends Component {
 
@@ -20,12 +21,22 @@ export default class NewPlaylist extends Component {
     }
 
     handleSubmit (event){
-        console.log(this.state.inputValue)
+        //console.log(this.state.inputValue)
+        // 
+
+        console.log(this.state.inputValue, "inside handlesubmit");
+        axios.post('/api/playlists', { name: this.state.inputValue/* req.body contents go here! */ })
+        .then(res => res.data)
+        .then(result => {
+        console.log(result) // response json from the server!
+        })
         event.preventDefault();
         this.setState({
           inputValue: ""
         });
     }
+
+   
 
 
   render () {
